@@ -1,23 +1,10 @@
-const myLibrary = [
-  {title:"Jurassic Park", author: "Michael Crichton", pages: "464", readYet: true, id: 5093423},
-];
+const myLibrary = [];
+const container = document.querySelector("#container");
+let card;
 
-let html = ''
+let html = '';
 
-for (let index = 0; index < myLibrary.length; index++ ) {
-  if (myLibrary[index].readYet === true) {
-  html += `<li>I have read ${myLibrary[index].title} by ${myLibrary[index].author}</li>`;
-} else {
-  html += `<li>I still have to read ${myLibrary[index].title} by ${myLibrary[index].author}</li>`;
-};
-};
-
- myLibrary.forEach(book => {
-  html += `${book.title}`
-});
-
-document.getElementById('library').innerHTML = html;
-
+// Book Constructor
 function Book(title, author, pages, readYet, id) {
     this.title = title;
     this.author = author;
@@ -26,34 +13,55 @@ function Book(title, author, pages, readYet, id) {
     this.id = id;
 }
 
-const addBook = document.querySelector(".addbook");
-addBook.addEventListener('click', () => {
-  doYouWantToAddABook();
-});
+if (myLibrary.length === 0) {
+addBookToLibrary("Jurassic Park", "Michael Crichton", 464, true);
+addBookToLibrary("Diary of a Wimpy Kid", "Jeff Kinney", 224, true);
+};
 
-function doYouWantToAddABook() {
-    let addBook =  confirm("Would you like to add a new book?");
-    addBook ? addBookToLibrary() : alert("ok, come back when you do!");
-}
-
-function addBookToLibrary() {
-  let title = prompt("Book Title?");
-  let author = prompt("Author?");
-  let pages = prompt("How many pages?");
-  let readyet = prompt("Have you read it yet? Y/N?")
-
-  if (readyet === 'n' || 'N') {
-    readyet = false
-  } else {
-    readyet = true
-  } 
-  const newBook = new Book(title, author, pages, readyet, id='');
+// Add Book to myLibrary Array
+function addBookToLibrary(title, author, pages, readYet) {
+  id = crypto.randomUUID();
+  const newBook = new Book(title, author, pages, readYet, id);
   myLibrary.push(newBook);
+};
 
- 
+// Display Book
+function displayBooks() {
+  myLibrary.forEach(item => {
+    card = document.createElement('div')
 
-  console.log(newBook);
-  console.log(myLibrary)
-  }
+    const title = document.createElement('h4');
+    title.textContent = `Title: ${item.title}`
+    card.appendChild(title);
 
-  
+    container.appendChild(card);
+  })};
+
+ displayBooks();
+// 
+
+// function bookPrompts() {
+//   bookName = prompt("What book would you like to add?");
+//   writer = prompt("Who wrote this book?");
+//   num = prompt("How many pages does this book have?");
+//   read = prompt("Have you read the book yet?");
+//   addBookToLibrary(bookName, writer, num, read)
+// }
+// Initial Libray if it's currently empty
+
+
+
+
+// get elements from HTML
+document.getElementById('library').innerHTML = html;
+
+
+const addBook = document.querySelector(".addbook");
+// addBook.addEventListener('click', () => {
+//   doYouWantToAddABook();
+// });
+
+// function doYouWantToAddABook() {
+//     let addBook =  confirm("Would you like to add a new book?");
+//     addBook ? bookPrompts() : alert("ok, come back when you do!");
+// }
