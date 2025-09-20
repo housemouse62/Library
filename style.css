@@ -8,6 +8,10 @@ h2 {
     font-size: 20px;
 }
 
+.main-screen {
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
 #container {
     display: flex;
     grid-gap: 5px;
