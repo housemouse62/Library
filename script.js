@@ -1,8 +1,14 @@
 const myLibrary = [];
 const container = document.querySelector("#container");
+const newTitle = document.querySelector("#newTitle");
+const newAuthor = document.querySelector("#newAuthor");
+const newPages = document.querySelector("#newPages");
+const addBookButton = document.querySelector(".addBook"); 
 let card;
 
 let html = '';
+
+
 
 // Book Constructor
 function Book(title, author, pages, readYet, id) {
@@ -17,6 +23,13 @@ if (myLibrary.length === 0) {
 addBookToLibrary("Jurassic Park", "Michael Crichton", 464, true);
 addBookToLibrary("Diary of a Wimpy Kid", "Jeff Kinney", 224, true);
 };
+
+addBookButton.addEventListener('click', (event) => {
+  addBookToLibrary(newTitle.value, newAuthor.value, newPages.value, true);
+  
+  displayBooks();
+  event.preventDefault();
+});
 
 // Add Book to myLibrary Array
 function addBookToLibrary(title, author, pages, readYet) {
@@ -47,30 +60,8 @@ function displayBooks() {
   })};
 
  displayBooks();
-// 
-
-// function bookPrompts() {
-//   bookName = prompt("What book would you like to add?");
-//   writer = prompt("Who wrote this book?");
-//   num = prompt("How many pages does this book have?");
-//   read = prompt("Have you read the book yet?");
-//   addBookToLibrary(bookName, writer, num, read)
-// }
-// Initial Libray if it's currently empty
-
 
 
 
 // get elements from HTML
-document.getElementById('library').innerHTML = html;
-
-
-const addBook = document.querySelector(".addbook");
-// addBook.addEventListener('click', () => {
-//   doYouWantToAddABook();
-// });
-
-// function doYouWantToAddABook() {
-//     let addBook =  confirm("Would you like to add a new book?");
-//     addBook ? bookPrompts() : alert("ok, come back when you do!");
-// }
+//document.getElementById('library').innerHTML = html;

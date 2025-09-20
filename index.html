@@ -10,13 +10,34 @@
     <div class="main-screen">
         <div class="input-form">
             <form>
-                <h2>INput</h2>
+                <legend>Add A Book!</legend>
+                <div>
+                    <label for="newTitle">Book Title:</label>
+                    <input type="text" id="newTitle" name="newTitle" />
+                </div>
+                <div>
+                    <label for="newAuthor">Author:</label>
+                    <input type="text" id="newAuthor" name="newAuthor" />
+                </div>
+                <div>
+                    <label for="newPages">Number of Pages:</label>
+                    <input type="text" id="newPages" name="newPages" />
+                </div>
+                <div>
+                    <label class="checkbox-label" for="newReadYet">
+                        <input id="newReadYet"
+                            name="newReadYet"
+                            type="checkbox"
+                            value="true"/>
+                    <span>I've already read this title.</span>
+                    </label>
+                </div>
+                <button class="addBook">Add Book!</button>
             </form>
         </div>
         <div class="shelf">
             <h2>The Stacks</h2>
             <div id="container"></div>
-            <button class="addbook">Add Book?</button>
         </div>
     </div>
     <script src="./script.js"></script>
