@@ -8,8 +8,13 @@ h2 {
     font-size: 20px;
 }
 
+#container {
+    display: flex;
+    grid-gap: 5px;
+}
+
 .book {
-    height: 200px;
-    width: 200px;
-    background-color: lightblue;
+    border: 1px solid black;
+    writing-mode: vertical-rl;
+    text-orientation: sideways;
 }

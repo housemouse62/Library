@@ -28,11 +28,20 @@ function addBookToLibrary(title, author, pages, readYet) {
 // Display Book
 function displayBooks() {
   myLibrary.forEach(item => {
-    card = document.createElement('div')
+    card = document.createElement('div');
+    card.classList = 'book';
 
     const title = document.createElement('h4');
-    title.textContent = `Title: ${item.title}`
+    title.textContent = `Title: ${item.title}`;
     card.appendChild(title);
+
+    const author = document.createElement('h5');
+    author.textContent = `Written by: ${item.author}`;
+    card.appendChild(author);
+
+    const pages = document.createElement('h5');
+    pages.textContent = `Pages: ${item.pages}`;
+    card.appendChild(pages);
 
     container.appendChild(card);
   })};
