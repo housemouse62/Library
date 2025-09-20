@@ -63,6 +63,16 @@ function displayBooks() {
     const removeButton = document.createElement('button');
     removeButton.innerText = 'Remove';
     removeButton.className = "removeButton";
+
+    removeButton.addEventListener("click", (event) => {
+    
+    const findIt = myLibrary.map(item => item.id).indexOf(removeButton.dataset.id);
+    console.log(findIt);
+    myLibrary.splice(findIt, 1);
+
+    displayBooks();
+  });
+
     card.appendChild(removeButton);
     
     card.setAttribute("data-id", item.id);
@@ -75,17 +85,17 @@ function displayBooks() {
 
  displayBooks();
 
-let removeButton = document.querySelectorAll(".removeButton");
+const removeButton = document.querySelectorAll(".removeButton");
 
 // Remove Book
-  removeButton.forEach((btn) => {
-  btn.addEventListener("click", (event) => {
+  // removeButton.forEach((btn) => {
+  // btn.addEventListener("click", (event) => {
     
-    const findIt = myLibrary.map(item => item.id).indexOf(btn.dataset.id);
-    console.log(findIt);
-    myLibrary.splice(findIt, 1);
-    
-    displayBooks();
-  })});
+  //   const findIt = myLibrary.map(item => item.id).indexOf(btn.dataset.id);
+  //   console.log(findIt);
+  //   myLibrary.splice(findIt, 1);
+
+  //   displayBooks();
+  // })});
 
   
