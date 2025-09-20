@@ -5,6 +5,7 @@ const newAuthor = document.querySelector("#newAuthor");
 const newPages = document.querySelector("#newPages");
 const addBookButton = document.querySelector(".addBook"); 
 let card;
+let data;
 
 let html = '';
 
@@ -20,8 +21,9 @@ function Book(title, author, pages, readYet, id) {
 }
 
 if (myLibrary.length === 0) {
-addBookToLibrary("Jurassic Park", "Michael Crichton", 464, true);
 addBookToLibrary("Diary of a Wimpy Kid", "Jeff Kinney", 224, true);
+addBookToLibrary("Jurassic Park", "Michael Crichton", 464, true);
+
 };
 
 addBookButton.addEventListener('click', (event) => {
@@ -58,12 +60,32 @@ function displayBooks() {
     pages.textContent = `Pages: ${item.pages}`;
     card.appendChild(pages);
 
+    const removeButton = document.createElement('button');
+    removeButton.innerText = 'Remove';
+    removeButton.className = "removeButton";
+    card.appendChild(removeButton);
+    
+    card.setAttribute("data-id", item.id);
     container.appendChild(card);
+
+    removeButton.setAttribute("data-id", item.id);
+    card.appendChild(removeButton);
+    
   })};
 
  displayBooks();
 
+let removeButton = document.querySelectorAll(".removeButton");
 
+// Remove Book
+  removeButton.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    
+    const findIt = myLibrary.map(item => item.id).indexOf(btn.dataset.id);
+    console.log(findIt);
+    myLibrary.splice(findIt, 1);
+    
+    displayBooks();
+  })});
 
-// get elements from HTML
-//document.getElementById('library').innerHTML = html;
+  
