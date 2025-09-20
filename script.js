@@ -40,6 +40,8 @@ function addBookToLibrary(title, author, pages, readYet) {
 
 // Display Book
 function displayBooks() {
+  container.innerHTML = '';
+
   myLibrary.forEach(item => {
     card = document.createElement('div');
     card.classList = 'book';
