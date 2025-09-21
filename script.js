@@ -50,23 +50,41 @@ function displayBooks() {
     card = document.createElement('div');
     card.classList = 'book';
 
+    const topBlock = document.createElement('div');
+    topBlock.className = 'topBlock';
+    card.appendChild(topBlock);
+
     const title = document.createElement('h4');
-    title.textContent = `Title: ${item.title}`;
-    card.appendChild(title);
+    title.textContent = `${item.title}`;
+    topBlock.appendChild(title);
 
     const author = document.createElement('h5');
-    author.textContent = `Written by: ${item.author}`;
-    card.appendChild(author);
+    author.textContent = `${item.author}`;
+    topBlock.appendChild(author);
 
     const pages = document.createElement('h5');
-    pages.textContent = `Pages: ${item.pages}`;
-    card.appendChild(pages);
+    if (item.pages !== '') {
+    pages.textContent = `${item.pages} pgs`;};
+    topBlock.appendChild(pages);
 
+    
+    
+    
+
+    const bottomBlock = document.createElement('div');
+    bottomBlock.className = 'bottomBlock';
+    card.appendChild(bottomBlock);
+
+    const readIcon = document.createElement('img');
+    readIcon.className = 'readIcon';
     if (item.readIt === true) {
-    const readIt = document.createElement('h5');
-    readIt.textContent = 'Read It';
-    card.appendChild(readIt);
+      readIcon.src = "./Images/checkbox-marked-outline.svg";
+    } else {
+      readIcon.src = "./Images/checkbox-blank-outline.svg";
+    //const readIt = document.createElement('h5');
+    //readIt.textContent = 'Read It';
     };
+     bottomBlock.appendChild(readIcon);
 
     const removeButton = document.createElement('button');
     removeButton.innerText = 'Remove';
@@ -76,6 +94,7 @@ function displayBooks() {
     toggleStatus.innerText = 'Read';
     toggleStatus.className = 'readButton';
     toggleStatus.addEventListener("click", (event) => item.changeReadStatus());
+    bottomBlock.appendChild(toggleStatus);
 
     removeButton.addEventListener("click", (event) => {
     const findIt = myLibrary.map(item => item.id).indexOf(removeButton.dataset.id);
@@ -84,15 +103,12 @@ function displayBooks() {
 
     displayBooks();
   });
-    card.appendChild(toggleStatus);
-    card.appendChild(removeButton);
     
     card.setAttribute("data-id", item.id);
     container.appendChild(card);
 
     removeButton.setAttribute("data-id", item.id);
-    card.appendChild(removeButton);
-    
+    bottomBlock.appendChild(removeButton);
   })};
 
  displayBooks();
