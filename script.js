@@ -3,6 +3,7 @@ const container = document.querySelector("#container");
 const newTitle = document.querySelector("#newTitle");
 const newAuthor = document.querySelector("#newAuthor");
 const newPages = document.querySelector("#newPages");
+const readIt = document.querySelector("#readIt");
 const addBookButton = document.querySelector(".addBook"); 
 let card;
 let data;
@@ -12,31 +13,32 @@ let html = '';
 
 
 // Book Constructor
-function Book(title, author, pages, readYet, id) {
+function Book(title, author, pages, readIt, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.readYet = readYet;
+    this.readIt = readIt;
     this.id = id;
 }
 
 if (myLibrary.length === 0) {
 addBookToLibrary("Diary of a Wimpy Kid", "Jeff Kinney", 224, true);
-addBookToLibrary("Jurassic Park", "Michael Crichton", 464, true);
+addBookToLibrary("Jurassic Park", "Michael Crichton", 464, false);
 
 };
 
 addBookButton.addEventListener('click', (event) => {
-  addBookToLibrary(newTitle.value, newAuthor.value, newPages.value, true);
+    console.log(readIt.checked)
+  addBookToLibrary(newTitle.value, newAuthor.value, newPages.value, readIt.checked);
   
   displayBooks();
   event.preventDefault();
 });
 
 // Add Book to myLibrary Array
-function addBookToLibrary(title, author, pages, readYet) {
+function addBookToLibrary(title, author, pages, readIt) {
   id = crypto.randomUUID();
-  const newBook = new Book(title, author, pages, readYet, id);
+  const newBook = new Book(title, author, pages, readIt, id);
   myLibrary.push(newBook);
 };
 
@@ -60,19 +62,29 @@ function displayBooks() {
     pages.textContent = `Pages: ${item.pages}`;
     card.appendChild(pages);
 
+    if (item.readIt === true) {
+    const readIt = document.createElement('h5');
+    readIt.textContent = 'Read It';
+    card.appendChild(readIt);
+    };
+
     const removeButton = document.createElement('button');
     removeButton.innerText = 'Remove';
     removeButton.className = "removeButton";
 
+    const toggleStatus = document.createElement('button');
+    toggleStatus.innerText = 'Read';
+    toggleStatus.className = 'readButton';
+    toggleStatus.addEventListener("click", (event) => item.changeReadStatus());
+
     removeButton.addEventListener("click", (event) => {
-    
     const findIt = myLibrary.map(item => item.id).indexOf(removeButton.dataset.id);
     console.log(findIt);
     myLibrary.splice(findIt, 1);
 
     displayBooks();
   });
-
+    card.appendChild(toggleStatus);
     card.appendChild(removeButton);
     
     card.setAttribute("data-id", item.id);
@@ -85,17 +97,14 @@ function displayBooks() {
 
  displayBooks();
 
+Book.prototype.changeReadStatus = function() {
+  if (this.readIt === true) {
+    this.readIt = false
+  } else {
+    this.readIt = true
+  };
+  displayBooks();
+}
 const removeButton = document.querySelectorAll(".removeButton");
-
-// Remove Book
-  // removeButton.forEach((btn) => {
-  // btn.addEventListener("click", (event) => {
-    
-  //   const findIt = myLibrary.map(item => item.id).indexOf(btn.dataset.id);
-  //   console.log(findIt);
-  //   myLibrary.splice(findIt, 1);
-
-  //   displayBooks();
-  // })});
 
   
