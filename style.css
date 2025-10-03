@@ -106,3 +106,7 @@ input[type="text"] {
 .readIcon {
     height: 30px;
 }
+
+p {
+    font-size: 10px;
+}

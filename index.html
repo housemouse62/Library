@@ -12,16 +12,16 @@
             <form class="form">
                 <legend>Add A Book!</legend>
                 <div class = "input_field">
-                    <label for="newTitle">Book Title:</label>
-                    <input type="text" id="newTitle" name="newTitle" />
+                    <label for="newTitle">* Book Title:</label>
+                    <input type="text" id="newTitle" name="newTitle" required />
                 </div>
                 <div class = "input_field">
-                    <label for="newAuthor">Author:</label>
-                    <input type="text" id="newAuthor" name="newAuthor" />
+                    <label for="newAuthor">* Author:</label>
+                    <input type="text" id="newAuthor" name="newAuthor" required />
                 </div>
                 <div class = "input_field">
                     <label for="newPages">Number of Pages:</label>
-                    <input type="text" id="newPages" name="newPages" />
+                    <input type="number" id="newPages" name="newPages" />
                 </div>
                 <div class = "input_field">
                     <label class="readIt" for="readIt">
@@ -33,6 +33,7 @@
                     </label>
                 </div>
                 <button class="addBook">Add Book!</button>
+                <p>* required field</p>
             </form>
             <div>
                 <img src="./Images/thought windows logo design - Edited - Edited.png" class="logo">
