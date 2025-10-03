@@ -13,13 +13,15 @@ let html = '';
 
 
 // Book Constructor
-function Book(title, author, pages, readIt, id) {
+class Book {
+  constructor(title, author, pages, readIt, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.readIt = readIt;
     this.id = id;
-}
+};
+};
 
 if (myLibrary.length === 0) {
 addBookToLibrary("Diary of a Wimpy Kid", "Jeff Kinney", 224, true);
